@@ -26,6 +26,7 @@
         android:layout_width="55mm"
         android:layout_height="65mm"
         android:layout_marginTop="10mm"
-        tools:listitem="@layout/items"></ListView>
+        tools:listitem="@layout/items"
+        ></ListView>
 
 </RelativeLayout>

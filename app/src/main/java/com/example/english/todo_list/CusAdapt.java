@@ -29,6 +29,10 @@ class CusAdapt extends BaseAdapter {
         lsts.add(s);
     }
 
+    public void delete(int position){
+        lsts.remove(position);
+    }
+
     @Override
     public int getCount() {
         return lsts.size();

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,12 +44,15 @@ public class MainActivity extends Activity {
                 edt.setText("");
             }
         });
-        //lstv.setOnClickListener(new View.OnClickListener() {
-          //  @Override
-            //public void onClick(View v) {
-//
-  //          }
-    //    });
+        lstv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                cus.delete(position);
+                cus.notifyDataSetChanged();
+                return true;
+            }
+        });
+
     }
 
     @Override
