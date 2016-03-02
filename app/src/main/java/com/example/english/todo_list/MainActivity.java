@@ -9,8 +9,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,8 +35,8 @@ public class MainActivity extends Activity {
         al = new ArrayList<String>();
         aa = new ArrayAdapter<String>(this, R.layout.items, android.R.id.text1, al);
         ArrayList<String> listtest = new ArrayList<String>();
-        listtest.add("data 1");
-        final CusAdapt cus = new CusAdapt(this, new String[]{"Data 1"}, listtest);
+        //listtest.add("data 1");
+        final CusAdapt cus = new CusAdapt(this, new String[]{}, listtest);
         lstv.setAdapter(cus);
         addb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +55,16 @@ public class MainActivity extends Activity {
             }
         });
 
+
+    }
+
+    public boolean CheckState(CusAdapt cs){
+        for(int i = 0; i < cs.items.size()-1; i++){
+            if(cs.items.get(i).getChecked() == true){
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
