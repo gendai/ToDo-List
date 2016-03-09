@@ -1,8 +1,6 @@
 package com.example.english.todo_list;
 
-/**
- * Created by english on 02/03/2016.
- */
+
 public class ToDoItems {
 
     private String text;

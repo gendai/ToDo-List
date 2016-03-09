@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,11 +76,30 @@ class CusAdapt extends BaseAdapter {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                items.get(position).setChecked(isChecked);
+                if(checkAll() && items.size() > 0){
+                    Toast.makeText(context, "All tasks has been completed", Toast.LENGTH_LONG).show();
+                }
             }
         });
         viewHolder.checkboxItem.setChecked(items.get(position).getChecked());
         viewHolder.textViewItem.setText(items.get(position).getText());
         return convertView;
+    }
+
+    public void Clear(){
+        int len = items.size();
+        for(int i = 0; i < len;i++){
+            delete(0);
+        }
+    }
+
+    private boolean checkAll(){
+        for (ToDoItems i: items) {
+            if(i.getChecked() == false){
+                return false;
+            }
+        }
+        return true;
     }
 
     static class ViewHolderItem {

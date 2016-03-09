@@ -9,17 +9,23 @@
 
     <EditText
         android:id="@+id/textbox"
-        android:layout_width="15mm"
+        android:layout_width="30mm"
         android:layout_height="6mm"
         android:layout_marginTop="2dp"
-        android:layout_marginLeft="15dp" />
+        android:layout_marginLeft="0dp" />
 
     <Button
         android:id="@+id/buttonADD"
-        android:layout_width="20mm"
+        android:layout_width="10mm"
         android:layout_height="6mm"
         android:layout_marginLeft="30mm"
         android:text="Add"/>
+    <Button
+        android:id="@+id/buttonDEL"
+        android:layout_width="12mm"
+        android:layout_height="6mm"
+        android:layout_marginLeft="40mm"
+        android:text="Clear"/>
 
     <ListView
         android:id="@+id/ListView"

@@ -20,6 +20,7 @@ import java.util.List;
 public class MainActivity extends Activity {
 
     Button addb;
+    Button delb;
     EditText edt;
     ListView lstv;
     ArrayAdapter<String> aa;
@@ -30,7 +31,9 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         addb = (Button) findViewById(R.id.buttonADD);
+        delb = (Button) findViewById(R.id.buttonDEL);
         edt = (EditText) findViewById(R.id.textbox);
+        edt.setText("");
         lstv = (ListView) findViewById(R.id.ListView);
         al = new ArrayList<String>();
         aa = new ArrayAdapter<String>(this, R.layout.items, android.R.id.text1, al);
@@ -41,9 +44,21 @@ public class MainActivity extends Activity {
         addb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cus.add(edt.getText().toString());
+                if(!edt.getText().toString().equals("")) {
+                    //Log.d("Text entered", edt.getText().toString());
+                    cus.add(edt.getText().toString());
+                    cus.notifyDataSetChanged();
+                    edt.setText("");
+                }else{
+                    Toast.makeText(getApplicationContext(), "Please enter a valid task name", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        delb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cus.Clear();
                 cus.notifyDataSetChanged();
-                edt.setText("");
             }
         });
         lstv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
