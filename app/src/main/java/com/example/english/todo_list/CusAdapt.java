@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ class CusAdapt extends BaseAdapter {
         this.lsts = ls;
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        //items.add(new ToDoItems("Exemple",0));
+
     }
 
     public void add(String s){
@@ -54,20 +55,11 @@ class CusAdapt extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        /*View vi = convertView;
-        if (vi == null)
-            vi = inflater.inflate(R.layout.items, null);
-        TextView text = (TextView) vi.findViewById(R.id.textList);
-        if(items.size() != 0) {
-            text.setText(items.get(position).getText());
-        }*/
-
-        ViewHolderItem viewHolder;
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        final ViewHolderItem viewHolder;
 
         if(convertView==null){
 
-            // inflate the layout
             Context context = parent.getContext();
             convertView = LayoutInflater.from(context).inflate(R.layout.items, null);
             viewHolder = new ViewHolderItem();
@@ -79,6 +71,12 @@ class CusAdapt extends BaseAdapter {
 
             viewHolder = (ViewHolderItem) convertView.getTag();
         }
+        viewHolder.checkboxItem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+               items.get(position).setChecked(isChecked);
+            }
+        });
         viewHolder.checkboxItem.setChecked(items.get(position).getChecked());
         viewHolder.textViewItem.setText(items.get(position).getText());
         return convertView;
